@@ -36,6 +36,14 @@ Security Vulnerabilities
 
 %{toc|fromDepth=2|toDepth=2}
 
+* {CVE-2021-44228}: Apache log4j2 is vulnerable to remote code execution
+
+  As mentioned in this CVE Apache log4j2 libraries are vulnerable to remote code execution.
+  Archiva is using log4j2 libraries and is therefore vulnerable to the same scenarios mentioned in this CVE.
+  Attackers may be able to inject statements into the HTTP requests which may be interpreted by the logging library
+  and lead to the download of arbitrary code from remote servers.
+   
+
 * {CVE-2020-9495}: Apache Archiva login service is vulnerable to LDAP injection
 
   By providing special values to the archiva login form a attacker is able to retrieve user attribute data from the connected LDAP server.

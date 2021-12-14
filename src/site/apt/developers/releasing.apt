@@ -2,7 +2,7 @@
  Archiva release process
  -----
  -----
- 2012-01-19
+ 2021-12-14
  -----
 
 ~~ Licensed to the Apache Software Foundation (ASF) under one
@@ -30,6 +30,7 @@ Archiva release process
  [[1]] Post to the dev list a few days before you plan to do an Archiva release
 
  [[2]] Recreate the staging repository on archiva-repository.apache.org - make sure that it is not scanned (so that .index* is not created).
+       You should delete the repository and create a new one.
        Your maven setting must contains the entry to be able to deploy.
 
 +-------------
@@ -57,8 +58,11 @@ Archiva release process
  [[6]] Verify that the webapp-tests are building successfully. \
      Since it is in a separate profile but inside the Archiva source tree, it will not be released but will still be included in the release tag. If some tests are failing, comment it out first so that only the passing tests are executed when the webapp-tests module are built from the tag.
 
+     Currently, we do not use these tests anymore.
+
  [[7]] Release archiva.\
     You should have a GPG agent running (preferred), and confirm it works by running "gpg -ab" (type some text and press Ctrl-D).
+    You my check, if the key is in your keyring: `gpg --list-secret-keys`
     If you do not have a GPG agent running, make sure that you have the "apache-release" profile set in your settings.xml as shown below.
 
 +-------------
@@ -74,11 +78,10 @@ Archiva release process
     your settings.xml for {{archiva-repository.releases}}.
 
     Prepare your environment:
-    For Archiva 2.x you have to use two different JDKs for the process. JDK 7 is used for the prepare release (compile) 
-    and JDK 8 for uploading (supported SSL versions)
+    We use JDK 8 for compile and publish, as JDK 7 is not supported anymore. 
 
 +-------------
-export JAVA_HOME=<PATH_TO_JDK7>
+export JAVA_HOME=<PATH_TO_JDK8>
 export PATH=$JAVA_HOME/bin:$PATH
 export MAVEN_OPTS="-Xmx6144m -XX:MaxPermSize=512m" # It may work with less heap, but this is a safe value
 export JAVA_OPT="-Xmx6144m -XX:MaxPermSize=512m" 
@@ -91,9 +94,11 @@ mvn release:prepare
 +-------------
     Check that it has been properly tagged. The tag name must be.. archiva-[VERSION].
 
-    You can rollback with `mvn release:rollback`.
+    You can rollback with `mvn release:rollback`. If there are errors and you have to change files, you should run `mvn release:rollback`
+    before changing any file.
 
-    If all works fine, set JDK 8 and execute the release:perform task
+    If all works fine, set execute the `release:perform` task
+ 
 
 +-------------
 export JAVA_HOME=<PATH_TO_JDK8>
@@ -127,7 +132,19 @@ git checkout archiva-${ARCHV} # Checkout the release version of archiva
 cd archiva-doc
 mvn site:site
 mvn site:stage  # Check the content in target/staging
+mkdir <web-content-git>/docs/${ARCHV}
 cp -r target/staging/* <web-content-git>/docs/${ARCHV}/ # Copy to the git web content repository
++-------------
+
+    Reference documentation
+
++-------------
+git checkout archiva-${ARCHV} # Checkout the release version of archiva
+cd archiva-modules
+mvn site:site
+mvn site:stage  # Check the content in target/staging
+mkdir <web-content-git>/ref/${ARCHV}
+cp -r target/staging/* <web-content-git>/ref/${ARCHV}/ # Copy to the git web content repository
 +-------------
 
     If the vote doesn't pass, the documentation will need to be removed from the server for redeployment.
@@ -139,6 +156,9 @@ cp -r target/staging/* <web-content-git>/docs/${ARCHV}/ # Copy to the git web co
 svn co https://dist.apache.org/repos/dist/dev/archiva/ archiva-dev-release
 cd archiva-dev-release
 sh ./release-script-svn.sh $ARCHV ${RELEASE_URL}/
+cd $ARCHV
+../../verify.sh
+# Check the output
 
 # For parent pom or redback:
 POMV=18  # New Parent POM version
