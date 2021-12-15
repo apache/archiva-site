@@ -81,7 +81,7 @@ Getting Involved in the Archiva Project
 
   * <<Fix bugs>>\
     Report bugs, feature requests and other issues in the
-    {{{./issue-tracking.html}Jira}} issue tracking system. Also, read up on 
+    {{{./issue-management.html}Jira}} issue tracking system. Also, read up on 
     {{{./developers/how-we-do-things.html}how we do things}} in Archiva.
 
   * <<Build it>>\
