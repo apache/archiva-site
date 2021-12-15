@@ -64,7 +64,7 @@ Documentation
 
  To work on the documentation, execute <<<mvn site:run>>> in one of these directories, and then visit
  {{http://localhost:8080}} to view pages as you edit them.  When you're done, submit a patch in the
- {{{../issue-tracking.html}issue tracker}}.
+ {{{../issue-management.html}issue tracker}}.
 
 
 git clone
