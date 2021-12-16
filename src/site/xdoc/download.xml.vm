@@ -55,11 +55,7 @@ under the License.
           The currently selected mirror is
           <b>[preferred]</b>.
           If you encounter a problem with this mirror,
-          please select another mirror.
-          If all mirrors are failing, there are
-          <i>backup</i>
-          mirrors
-          (at the end of the mirrors list) that should be available.
+          please select the other mirror.
         </p>
 
         <form action="[location]" method="get" id="SelectMirror" class="form-inline">
@@ -83,12 +79,6 @@ under the License.
           </select>
           <input type="submit" value="Change" class="btn"/>
         </form>
-
-        <p>
-          You may also consult the
-          <a href="https://www.apache.org/mirrors/">complete list of
-            mirrors.</a>
-        </p>
 
       </subsection>
       <subsection name="Current Release: Archiva ${archivaReleaseVersion}">

@@ -147,7 +147,31 @@ mkdir <web-content-git>/ref/${ARCHV}
 cp -r target/staging/* <web-content-git>/ref/${ARCHV}/ # Copy to the git web content repository
 +-------------
 
-    If the vote doesn't pass, the documentation will need to be removed from the server for redeployment.
+    Archiva site information
+
+    Update the archiva site ({{https://gitbox.apache.org/repos/asf/archiva-site.git}}) for the versions and release notes URL:
+
+    Mostly these properties of the pom.xml should be edited:
+
++-------------
+  <archivaReleaseVersion>2.2.6</archivaReleaseVersion>
+  <archivaReleaseDate>16th May 2019</archivaReleaseDate>
+  <archivaCurrentDevVersion>3.0.0-SNAPSHOT</archivaCurrentDevVersion>
++-------------
+
+    Release information may be updated.
+    Update Security information.
+
+    Run <<deploySite.sh>>. The script will prepare the site locally and provide information how to check the content before pushing to the remote repository.
+
++-------------
+cd archiva-site
+./deploySite.sh
+# You can check the files locally, if you press y after the message is presented, it will be pushed to the asf-staging branch
++-------------
+
+    The site can be checked at: https://archiva.staged.apache.org/
+    The downloads do not work on the staged site.
 
     Commit the sources and binaries from <<<org/apache/archiva/archiva-jetty>>> and <<<org/apache/archiva/archiva>>> to the svn distribution tree.
     First in dev tree: <<<https://dist.apache.org/repos/dist/dev/archiva/>>>
@@ -167,8 +191,7 @@ REDBV=2.6 # New redback version
 sh ./release-script-redback-svn.sh $REDBV ${RELEASE_URL}/
 +-------------
 
-  If the vote pass they will be copied to release tree: <<<https://dist.apache.org/repos/dist/release/archiva>>>
-
+  If the vote passes the binaries must be copied to release tree: <<<https://dist.apache.org/repos/dist/release/archiva>>>
 
   Call for a vote in the dev list and wait for 72 hrs. for the vote results. 3 binding votes are necessary for the release to be finalized.
   If the vote fails or needs to be canceled, the version number should not be re-used if the version was made available for public download.
@@ -180,30 +203,27 @@ svn mv https://dist.apache.org/repos/dist/dev/archiva/${ARCHV} https://dist.apac
 # Move also the POM and Redback and Redback Component releases, if there are new ones.
 +-------------
 
-  Merge the archiva-releases-stage to archiva-releases on archiva-repository.apache.org
+  It needs some time until the download packages are available on the CDN.
+
+  Merge the archiva-releases-stage to archiva-releases on archiva-repository.apache.org (Action -> Merge on the stage repository)
 
   To sync the jars to Maven Central, you need to merge the repository archiva-releases-stage to "Central Rsync Repository"
 
   Mark the appropriate release version in JIRA as complete.
 
-  Update the archiva site ({{https://gitbox.apache.org/repos/asf/archiva-site.git}}) for the versions and release notes URL:
+  When the new download packages are available over the download page you can remove previous versions from {{https:d//dist.apache.org/repos/dist/release/archiva/}}
 
-  Mostly these properties of the pom.xml should be edited:
+  Publish the docs:
 
 +-------------
-  <archivaReleaseVersion>2.2.4</archivaReleaseVersion>
-  <archivaReleaseDate>16th May 2019</archivaReleaseDate>
-  <archivaCurrentDevVersion>3.0.0-SNAPSHOT</archivaCurrentDevVersion>
+cd archiva-web-content
+git checkout master
+git pull
+git merge asf-staging
+git push
 +-------------
 
-  Run <<deploySite.sh>>. The script will prepare the site locally and provide information how to check the content before pushing to the remote repository.
-
-  Once mirroring done (can be 24H): remove previous versions from {{https://dist.apache.org/repos/dist/release/archiva/}}
-
-  Publish the reference docs (sh ./deploySite.sh in the archiva-modules directory) from the release tag.
-  You may have to exclude the archiva-webapp module to do this.
-
-  Send out an announcement of the release to:
+  Send out an announcement (Simple Text Email, no Rich-Text) of the release to:
 
   * users@archiva.apache.org
 
