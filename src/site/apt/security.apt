@@ -36,6 +36,14 @@ Security Vulnerabilities
 
 %{toc|fromDepth=2|toDepth=2}
 
+* {CVE-2021-45105}: Apache Log4j2 does not always protect from infinite recursion in lookup evaluation
+
+  This may be used by attackers, if users changed the default Archiva log4j2.xml configuration.
+  
+* {CVE-2021-45046}: Apache log4j2 Thread Context Lookup Pattern vulnerable to remote code execution in certain non-default configurations
+ 
+  This may be used by attackers, if users changed the default Archiva log4j2.xml configuration.
+
 * {CVE-2021-44228}: Apache log4j2 is vulnerable to remote code execution
 
   As mentioned in this CVE Apache log4j2 libraries are vulnerable to remote code execution.
