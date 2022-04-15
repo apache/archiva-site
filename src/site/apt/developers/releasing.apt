@@ -239,3 +239,10 @@ git push
   for further actions.
 
 
+  And finally remove old versions from the distribution directory. All versions that are not mentioned in the download page should be removed:
+
++-------------
+svn del -m"Archiving release 2.2.x"  https://dist.apache.org/repos/dist/release/archiva/2.2.x
++-------------
+
+  See also: https://infra.apache.org/release-download-pages.html
