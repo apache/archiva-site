@@ -94,8 +94,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
-        <!-- upgrade version fail with adoc -->
-        <version>3.7.1</version>
         <configuration>
           <skipDeploy>true</skipDeploy>
           <asciidoc>
