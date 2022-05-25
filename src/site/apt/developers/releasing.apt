@@ -129,7 +129,7 @@ gpg -v archiva-jetty-${ARCHV}-bin.tar.gz.asc
 
 +-------------
 git checkout archiva-${ARCHV} # Checkout the release version of archiva
-cd archiva-doc
+cd archiva-docs
 mvn site:site
 mvn site:stage  # Check the content in target/staging
 mkdir <web-content-git>/docs/${ARCHV}
