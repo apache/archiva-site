@@ -36,6 +36,8 @@ Security Vulnerabilities
 
 %{toc|fromDepth=2|toDepth=2}
 
+* {CVE-2022-29405}:  Apache Archiva Arbitrary user password reset vulnerability
+
 * {CVE-2021-45105}: Apache Log4j2 does not always protect from infinite recursion in lookup evaluation
 
   This may be used by attackers, if users changed the default Archiva log4j2.xml configuration.
