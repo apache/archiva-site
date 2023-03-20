@@ -284,43 +284,6 @@
         </p>
     </section>
 
-    <section name="Resources">
-      <p>
-        Need more? Try some of these resources.
-      </p>
-      <div>
-        <h3>Books</h3>
-        <div style="margin-left: auto; margin-right: auto; text-align: center">
-          <div style="float: left; width: 50%;">
-            <p>
-              <a href="http://www.packtpub.com/apache-maven-2-effective-implementations/book"><img src="images/books/apache_maven_2_effective_implementation.jpg" /></a><br/>
-              <a href="http://www.packtpub.com/apache-maven-2-effective-implementations/book">Apache Maven 2: Effective Implementation</a> (Maria Odea Ching, Brett Porter; September 2009)<br/>
-              <span style="font-size: 0.8em">
-                Build and manage applications with Maven, Continuum and Archiva
-              </span>
-            </p>
-          </div>
-          <div style="float: left; width: 50%;">
-            <p>
-              <a href="http://www.wakaleo.com/java-power-tools"><img src="images/books/java_power_tools.gif" /></a><br/>
-              <a href="http://www.wakaleo.com/java-power-tools">Java Power Tools</a> (John Smart; April 2008)<br/>
-              <span style="font-size: 0.8em">
-                Contains a section on Archiva and repository management
-              </span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div style="clear: left">
-        <h3>Articles, Presentations and Tutorials</h3>
-        <ul>
-          <li>
-            <a href="http://www.adictosaltrabajo.com/tutoriales/tutoriales.php?pagina=archiva">Archiva 1.1.1 Tutorial in Spanish!</a> - Video also available 
-            <a href="http://www.adictosaltrabajo.com/detalle-noticia.php?noticia=61">here</a> - (Ángel García Jerez; September 2008)
-          </li>
-        </ul>
-      </div>
-    </section>
 
       <div id="dialogRelease" class="modal hide fade">
         <div class="modal-header">
